@@ -1,0 +1,23 @@
+{
+  "name": "git-login-action",
+  "version": "1.0.0",
+  "description": "Log into GitHub, GitLab, Bitbucket or else with SSH",
+  "main": "index.js",
+  "license": "GPL-3.0",
+  "author": "LuisEnMarroquin <luis@marroquin.dev>",
+  "scripts": {
+    "build": "ncc build index.js"
+  },
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0"
+  },
+  "devDependencies": {
+    "@zeit/ncc": "^0.22.3"
+  },
+  "standard": {
+    "ignore": [
+      "dist/*.js"
+    ]
+  }
+}

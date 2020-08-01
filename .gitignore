@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# File managers
+.DS_Store
+.directory
+desktop.ini
+
+# Test files
+/nothing.*
+
+# Other package managers
+yarn.lock
+npm-shrinkwrap.json
+
+# SSH files
+.ssh/
+config
+access

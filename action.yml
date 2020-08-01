@@ -1,0 +1,17 @@
+name: 'Git Login Action'
+description: 'Publish to GitHub Pages using your SSH key'
+author: 'LuisEnMarroquin'
+branding:
+  color: 'green'
+  icon: 'codesandbox'
+inputs:
+  ORIGIN:
+    description: 'SSH origin'
+    default: 'github.com'
+    required: false
+  SSHKEY:
+    description: 'SSH key'
+    required: true
+runs:
+  using: 'node12'
+  main: 'dist/index.js'

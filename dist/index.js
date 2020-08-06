@@ -191,7 +191,7 @@ try {
 
   exec(`pwd`)
   console.log({ home })
-  if (process.platform !== 'win32') exec(`[ -d sshFolder ] && rm -rf ${sshFolder}`)
+  if (process.platform !== 'win32') exec(`[ -d "${sshFolder}" ] && rm -rf ${sshFolder}`)
 
   mkdirSync(sshFolder)
   writeFileSync(sshConfig, accessText)

@@ -25,7 +25,7 @@ try {
   let accessText = `Host ${ORIGIN}\n  HostName ${ORIGIN}\n  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n`
 
   console.log({ home })
-  if (existsSync(sshFolder)) rmdirSync(sshFolder)
+  if (process.platform === "darwin") exec(`rm -rf ${sshFolder}`)
   mkdirSync(sshFolder)
   writeFileSync(sshConfig, accessText)
   writeFileSync(sshAccess, SSHKEY)

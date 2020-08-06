@@ -2,6 +2,8 @@ const { getInput, setFailed } = require('@actions/core')
 const { mkdirSync, writeFileSync } = require('fs')
 const { context } = require('@actions/github')
 const { execSync } = require('child_process')
+const { homedir } = require('os')
+const { join } = require('path')
 
 try {
   let exec = (command) => {
@@ -13,10 +15,12 @@ try {
 
   let ORIGIN = getInput('ORIGIN')
   let SSHKEY = getInput('SSHKEY')
+  let home = homedir()
+  console.log({ home })
 
-  const sshFolder = '~/.ssh/'
-  const sshConfig = '~/.ssh/config'
-  const sshAccess = '~/.ssh/access'
+  const sshFolder = join(home, '.ssh')
+  const sshConfig = join(home, '.ssh', 'config')
+  const sshAccess = join(home, '.ssh', 'access')
 
   mkdirSync(sshFolder)
   writeFileSync(sshConfig, `Host ${ORIGIN}\n  HostName ${ORIGIN}\n  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n`)

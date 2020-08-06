@@ -1,5 +1,5 @@
-const { mkdirSync, writeFileSync } = require('fs')
 const { getInput, setFailed } = require('@actions/core')
+const { mkdirSync, writeFileSync } = require('fs')
 const { context } = require('@actions/github')
 const { execSync } = require('child_process')
 const { homedir } = require('os')
@@ -26,7 +26,7 @@ try {
 
   exec(`pwd`)
   console.log({ home })
-  if (process.platform !== 'win32') exec(`[[ -d ${sshFolder} ]] && rm -rf ${sshFolder}`)
+  if (process.platform === 'darwin') exec(`[ -d ${sshFolder} ] && rm -rf ${sshFolder}`)
 
   mkdirSync(sshFolder)
   writeFileSync(sshConfig, accessText)
@@ -48,6 +48,8 @@ try {
     exec(`git config --global user.name "${userName}"`)
     exec(`git config --global user.email "${userEmail}"`)
   }
+
+  console.log({ payload })
 } catch (error) {
   setFailed(error.message)
 }

@@ -9,21 +9,21 @@ jobs:
   ubuntu:
     runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/git-login-action@v0.8
+    - uses: LuisEnMarroquin/git-login-action@v0.9
       with:
         SSHKEY: ${{ secrets.SSH }}
     - run: ssh -T git@github.com || true
   macos:
     runs-on: macos-latest
     steps:
-    - uses: LuisEnMarroquin/git-login-action@v0.8
+    - uses: LuisEnMarroquin/git-login-action@v0.9
       with:
         SSHKEY: ${{ secrets.SSH }}
     - run: ssh -T git@github.com || true
   windows:
     runs-on: windows-latest
     steps:
-    - uses: LuisEnMarroquin/git-login-action@v0.8
+    - uses: LuisEnMarroquin/git-login-action@v0.9
       with:
         SSHKEY: ${{ secrets.SSH }}
     - run: ssh -T git@github.com || true

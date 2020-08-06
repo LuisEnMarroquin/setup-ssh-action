@@ -163,8 +163,8 @@ module.exports = require("os");
 /***/ 104:
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
-const { mkdirSync, writeFileSync } = __webpack_require__(747)
 const { getInput, setFailed } = __webpack_require__(470)
+const { mkdirSync, writeFileSync } = __webpack_require__(747)
 const { context } = __webpack_require__(469)
 const { execSync } = __webpack_require__(129)
 const { homedir } = __webpack_require__(87)
@@ -191,7 +191,7 @@ try {
 
   exec(`pwd`)
   console.log({ home })
-  if (process.platform !== 'win32') exec(`[[ -d ${sshFolder} ]] && rm -rf ${sshFolder}`)
+  if (process.platform === 'darwin') exec(`[ -d ${sshFolder} ] && rm -rf ${sshFolder}`)
 
   mkdirSync(sshFolder)
   writeFileSync(sshConfig, accessText)
@@ -213,6 +213,8 @@ try {
     exec(`git config --global user.name "${userName}"`)
     exec(`git config --global user.email "${userEmail}"`)
   }
+
+  console.log({ payload })
 } catch (error) {
   setFailed(error.message)
 }

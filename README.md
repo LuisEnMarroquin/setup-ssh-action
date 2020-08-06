@@ -32,7 +32,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/git-login-action@v0.2
+    - uses: LuisEnMarroquin/git-login-action@v0.3
       with:
         SSHKEY: ${{ secrets.SSH }}
     - run: ssh -T git@github.com || true
@@ -46,6 +46,6 @@ Remember to change the version number first for all files
 npm run build # Update your dist/index.js
 git add . # Add all files
 git commit -m "Use zeit/ncc" # Commit the files
-git tag -a -m "Published v0.2" v0.2 # Tag your release
+git tag -a -m "Published v0.3" v0.3 # Tag your release
 git push --follow-tags # Push commit and tags
 ```

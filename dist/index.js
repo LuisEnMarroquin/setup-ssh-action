@@ -163,8 +163,8 @@ module.exports = require("os");
 /***/ 104:
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
+const { existsSync, mkdirSync, rmdirSync, writeFileSync } = __webpack_require__(747)
 const { getInput, setFailed } = __webpack_require__(470)
-const { mkdirSync, writeFileSync } = __webpack_require__(747)
 const { context } = __webpack_require__(469)
 const { execSync } = __webpack_require__(129)
 const { homedir } = __webpack_require__(87)
@@ -178,27 +178,33 @@ try {
     return result
   }
 
-  let ORIGIN = getInput('ORIGIN')
-  let SSHKEY = getInput('SSHKEY')
-  let home = homedir()
-  console.log({ home })
-
-  const sshFolder = join(home, '.ssh')
-  const sshConfig = join(home, '.ssh', 'config')
-  const sshAccess = join(home, '.ssh', 'access')
-
-  mkdirSync(sshFolder)
-  writeFileSync(sshConfig, `Host ${ORIGIN}\n  HostName ${ORIGIN}\n  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n`)
-  writeFileSync(sshAccess, SSHKEY)
-
   let userName = ''
   let userEmail = ''
-  let payload = context.payload || {}
+  let home = homedir()
+  let ORIGIN = getInput('ORIGIN')
+  let SSHKEY = getInput('SSHKEY')
+  let sshFolder = join(home, '.ssh/')
+  let sshConfig = join(home, '.ssh', 'config')
+  let sshAccess = join(home, '.ssh', 'access')
+  let payload = context ? context.payload || {} : {}
+  let accessText = `Host ${ORIGIN}\n  HostName ${ORIGIN}\n  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n`
+
+  console.log({ home })
+  if (existsSync(sshFolder)) rmdirSync(sshFolder)
+  mkdirSync(sshFolder)
+  writeFileSync(sshConfig, accessText)
+  writeFileSync(sshAccess, SSHKEY)
+
   try {
     userName = payload.pusher ? (payload.pusher.name || userName) : userName
     userEmail = payload.pusher ? (payload.pusher.email || userEmail) : userEmail
   } catch (error) {
     console.error({ error })
+  }
+
+  if (process.platform !== 'win32') {
+    exec(`chmod 755 ${sshFolder}`)
+    exec(`chmod 600 ${sshAccess}`)
   }
 
   if (userName !== '' || userEmail !== '') {

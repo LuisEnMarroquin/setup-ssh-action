@@ -163,7 +163,7 @@ module.exports = require("os");
 /***/ 104:
 /***/ (function(__unusedmodule, __unusedexports, __webpack_require__) {
 
-const { existsSync, mkdirSync, rmdirSync, writeFileSync } = __webpack_require__(747)
+const { mkdirSync, writeFileSync } = __webpack_require__(747)
 const { getInput, setFailed } = __webpack_require__(470)
 const { context } = __webpack_require__(469)
 const { execSync } = __webpack_require__(129)
@@ -189,8 +189,10 @@ try {
   let payload = context ? context.payload || {} : {}
   let accessText = `Host ${ORIGIN}\n  HostName ${ORIGIN}\n  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n`
 
+  exec(`pwd`)
   console.log({ home })
-  if (process.platform === "darwin") exec(`rm -rf ${sshFolder}`)
+  if (process.platform !== 'win32') exec(`[ -d sshFolder ] && rm -rf ${sshFolder}`)
+
   mkdirSync(sshFolder)
   writeFileSync(sshConfig, accessText)
   writeFileSync(sshAccess, SSHKEY)

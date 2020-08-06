@@ -1,4 +1,4 @@
-const { existsSync, mkdirSync, rmdirSync, writeFileSync } = require('fs')
+const { mkdirSync, writeFileSync } = require('fs')
 const { getInput, setFailed } = require('@actions/core')
 const { context } = require('@actions/github')
 const { execSync } = require('child_process')
@@ -24,8 +24,10 @@ try {
   let payload = context ? context.payload || {} : {}
   let accessText = `Host ${ORIGIN}\n  HostName ${ORIGIN}\n  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n`
 
+  exec(`pwd`)
   console.log({ home })
-  if (process.platform === "darwin") exec(`rm -rf ${sshFolder}`)
+  if (process.platform !== 'win32') exec(`[ -d sshFolder ] && rm -rf ${sshFolder}`)
+
   mkdirSync(sshFolder)
   writeFileSync(sshConfig, accessText)
   writeFileSync(sshAccess, SSHKEY)

@@ -2,9 +2,9 @@
 
 ![GitHub](https://github.com/LuisEnMarroquin/git-login-action/workflows/Testing/badge.svg)
 
-This action logs you into your source control over SSH.
+This action sets up your SSH key on `windows`, `macos` and `ubuntu` Virtual Environments.
 
-Note: Please use the latest version avaliable, previous versions may have more errors.
+Please use the latest version avaliable or this action.
 
 ## Inputs
 
@@ -32,7 +32,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/git-login-action@v0.4
+    - uses: LuisEnMarroquin/git-login-action@v0.5
       with:
         SSHKEY: ${{ secrets.SSH }}
     - run: ssh -T git@github.com || true
@@ -46,6 +46,6 @@ Remember to change the version number first for all files
 npm run build # Update your dist/index.js
 git add . # Add all files
 git commit -m "Use zeit/ncc" # Commit the files
-git tag -a -m "Published v0.4" v0.4 # Tag your release
+git tag -a -m "Published v0.5" v0.5 # Tag your release
 git push --follow-tags # Push commit and tags
 ```

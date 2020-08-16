@@ -1,16 +1,16 @@
-# GitHub Pages Publish JavaScript Action
+# Setup SSH GitHub Action
 
-![GitHub](https://github.com/LuisEnMarroquin/git-login-action/workflows/Testing/badge.svg)
+![GitHub](https://github.com/LuisEnMarroquin/setup-ssh-action/workflows/Testing/badge.svg)
 
-This action sets up your SSH key on `windows`, `macos` and `ubuntu` Virtual Environments.
+This action sets up your SSH key on `Windows`, `macOS` and `Ubuntu` Virtual Environments
 
-Please use the latest version avaliable or this action.
+Please use the latest version avaliable or this action
 
 ## Inputs
 
 ### `ORIGIN`
 
-**Optional** Where you want to log in. Default `github.com`.
+**Optional** Where you want to log in. Default `github.com`
 
 ### `SSHKEY`
 
@@ -32,8 +32,9 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/git-login-action@v0.9
+    - uses: LuisEnMarroquin/git-login-action@v1.0
       with:
+        ORIGIN: 'github.com'
         SSHKEY: ${{ secrets.SSH }}
     - run: ssh -T git@github.com || true
 ```
@@ -46,6 +47,6 @@ Remember to change the version number first for all files
 npm run build # Update your dist/index.js
 git add . # Add all files
 git commit -m "Use zeit/ncc" # Commit the files
-git tag -a -m "Published v0.9" v0.9 # Tag your release
+git tag -a -m "Published v1.0" v1.0 # Tag your release
 git push --follow-tags # Push commit and tags
 ```

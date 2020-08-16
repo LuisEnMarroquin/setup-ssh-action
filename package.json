@@ -1,7 +1,7 @@
 {
-  "name": "git-login-action",
+  "name": "setup-ssh-action",
   "version": "1.0.0",
-  "description": "Log into GitHub, GitLab, Bitbucket or else with SSH",
+  "description": "Sets up your SSH credentials into GitHub, GitLab, Bitbucket or anything",
   "main": "index.js",
   "license": "GPL-3.0",
   "author": "LuisEnMarroquin <luis@marroquin.dev>",

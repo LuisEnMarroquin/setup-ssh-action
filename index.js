@@ -44,10 +44,8 @@ try {
     exec(`chmod 600 ${sshAccess}`)
   }
 
-  if (userName !== '' || userEmail !== '') {
-    exec(`git config --global user.name "${userName}"`)
-    exec(`git config --global user.email "${userEmail}"`)
-  }
+  if (userName !== '') exec(`git config --global user.name "${userName}"`)
+  if (userEmail !== '') exec(`git config --global user.email "${userEmail}"`)
 
   console.log({ payload })
 } catch (error) {

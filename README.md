@@ -32,7 +32,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/git-login-action@v1.0
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.0
       with:
         ORIGIN: 'github.com'
         SSHKEY: ${{ secrets.SSH }}

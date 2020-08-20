@@ -39,6 +39,8 @@ jobs:
     - run: ssh -T git@github.com || true
 ```
 
+<!--
+
 ## Publish action
 
 Remember to change the version number first for all files
@@ -50,3 +52,4 @@ git commit -m "Use zeit/ncc" # Commit the files
 git tag -a -m "Published v1.0" v1.0 # Tag your release
 git push --follow-tags # Push commit and tags
 ```
+-->

@@ -18,13 +18,14 @@ try {
   let home = homedir()
   let ORIGIN = getInput('ORIGIN')
   let SSHKEY = getInput('SSHKEY')
-  let USERNM = getInput('USERNM')
+  let HOST = getInput('HOST')
+  let USER = getInput('USER')
   let sshFolder = join(home, '.ssh/')
   let sshConfig = join(home, '.ssh', 'config')
   let sshAccess = join(home, '.ssh', 'access')
-  let user = (USERNM ? `  User ${USERNM}\n` : '')
+  let userSSH = (USER ? `  User ${USER}\n` : '')
   let payload = context ? context.payload || {} : {}
-  let accessText = `Host remote\n  HostName ${ORIGIN}\n  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n${user}`
+  let accessText = `Host ${HOST || ORIGIN}\n  HostName ${ORIGIN}\n${userSSH}  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n`
 
   exec(`pwd`)
   console.log({ home })
@@ -45,6 +46,8 @@ try {
     exec(`chmod 755 ${sshFolder}`)
     exec(`chmod 600 ${sshAccess}`)
   }
+
+  exec('cat ~/.ssh/config')
 
   if (userName !== '') exec(`git config --global user.name "${userName}"`)
   if (userEmail !== '') exec(`git config --global user.email "${userEmail}"`)

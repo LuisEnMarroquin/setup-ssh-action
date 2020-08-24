@@ -12,7 +12,10 @@ inputs:
   SSHKEY:
     description: 'SSH key'
     required: true
-  USERNM:
+  HOST:
+    description: 'SSH host'
+    required: false
+  USER:
     description: 'SSH user'
     required: false
 runs:

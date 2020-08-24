@@ -11,6 +11,7 @@ jobs:
     steps:
     - uses: LuisEnMarroquin/setup-ssh-action@v1.0
       with:
+        ORIGIN: ${{ secrets.SSH_HOST }}
         SSHKEY: ${{ secrets.SSH_GITHUB }}
         USERNM: ${{ secrets.SSH_USER }}
     - run: ssh remote pwd

@@ -11,10 +11,10 @@ jobs:
     steps:
     - uses: LuisEnMarroquin/setup-ssh-action@v1.2
       with:
-        ORIGIN: ${{ secrets.SSH_SERVER }}
-        SSHKEY: ${{ secrets.SSH_REMOTE }}
-        HOST: ${{ secrets.SSH_HOST }}
-        USER: ${{ secrets.SSH_USER }}
+        ORIGIN: ${{ secrets.HOST }}
+        SSHKEY: ${{ secrets.SSH_SERVER }}
+        HOST: ${{ secrets.HOST }}
+        USER: ${{ secrets.USER }}
     - run: ssh remote pwd
   macos:
     runs-on: macos-latest

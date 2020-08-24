@@ -12,6 +12,9 @@ inputs:
   SSHKEY:
     description: 'SSH key'
     required: true
+  USERNM:
+    description: 'SSH user'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'

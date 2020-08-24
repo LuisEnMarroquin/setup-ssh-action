@@ -18,15 +18,17 @@ try {
   let home = homedir()
   let ORIGIN = getInput('ORIGIN')
   let SSHKEY = getInput('SSHKEY')
+  let USERNM = getInput('USERNM')
   let sshFolder = join(home, '.ssh/')
   let sshConfig = join(home, '.ssh', 'config')
   let sshAccess = join(home, '.ssh', 'access')
+  let user = (USERNM ? `  User ${USERNM}\n` : '')
   let payload = context ? context.payload || {} : {}
-  let accessText = `Host ${ORIGIN}\n  HostName ${ORIGIN}\n  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n`
+  let accessText = `Host remote\n  HostName ${ORIGIN}\n  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n${user}`
 
   exec(`pwd`)
   console.log({ home })
-  if (process.platform === 'darwin') exec(`[ -d ${sshFolder} ] && rm -rf ${sshFolder}`)
+  if (process.platform === 'darwin') exec(`rm -rf ${sshFolder}`)
 
   mkdirSync(sshFolder)
   writeFileSync(sshConfig, accessText)

@@ -18,6 +18,10 @@ Please use the latest version avaliable or this action
 
 Your repo secrets are at: `https://github.com/<username>/<repository>/settings/secrets`
 
+### `USERNM`
+
+**Optional** Your user that will be on the SSH config file
+
 ## Example usage
 
 ```yml

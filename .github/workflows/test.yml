@@ -11,19 +11,20 @@ jobs:
     steps:
     - uses: LuisEnMarroquin/setup-ssh-action@v1.0
       with:
-        SSHKEY: ${{ secrets.SSH }}
-    - run: ssh -T git@github.com || true
+        SSHKEY: ${{ secrets.SSH_GITHUB }}
+        USERNM: ${{ secrets.SSH_USER }}
+    - run: ssh production pwd
   macos:
     runs-on: macos-latest
     steps:
     - uses: LuisEnMarroquin/setup-ssh-action@v1.0
       with:
-        SSHKEY: ${{ secrets.SSH }}
+        SSHKEY: ${{ secrets.SSH_GITHUB }}
     - run: ssh -T git@github.com || true
   windows:
     runs-on: windows-latest
     steps:
     - uses: LuisEnMarroquin/setup-ssh-action@v1.0
       with:
-        SSHKEY: ${{ secrets.SSH }}
+        SSHKEY: ${{ secrets.SSH_GITHUB }}
     - run: ssh -T git@github.com || true

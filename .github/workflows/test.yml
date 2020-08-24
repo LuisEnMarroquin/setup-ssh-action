@@ -13,7 +13,7 @@ jobs:
       with:
         SSHKEY: ${{ secrets.SSH_GITHUB }}
         USERNM: ${{ secrets.SSH_USER }}
-    - run: ssh production pwd
+    - run: ssh remote pwd
   macos:
     runs-on: macos-latest
     steps:

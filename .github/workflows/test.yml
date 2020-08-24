@@ -13,9 +13,9 @@ jobs:
       with:
         ORIGIN: ${{ secrets.HOST }}
         SSHKEY: ${{ secrets.SSH_SERVER }}
-        HOST: ${{ secrets.HOST }}
+        HOST: production
         USER: ${{ secrets.USER }}
-    - run: ssh remote pwd
+    - run: ssh production pwd
   macos:
     runs-on: macos-latest
     steps:
@@ -23,10 +23,10 @@ jobs:
       with:
         SSHKEY: ${{ secrets.SSH_GITHUB }}
     - run: ssh -T git@github.com || true
-  # windows:
-  #   runs-on: windows-latest
-  #   steps:
-  #   - uses: LuisEnMarroquin/setup-ssh-action@v1.2
-  #     with:
-  #       SSHKEY: ${{ secrets.SSH_GITHUB }}
-  #   - run: ssh -T git@github.com || true
+  windows:
+    runs-on: windows-latest
+    steps:
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.2
+      with:
+        SSHKEY: ${{ secrets.SSH_GITHUB }}
+    - run: ssh -T git@github.com || true

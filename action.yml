@@ -3,7 +3,7 @@ description: 'This action setups your SSH key for any host'
 author: 'LuisEnMarroquin'
 branding:
   color: 'green'
-  icon: 'key'
+  icon: 'award'
 inputs:
   ORIGIN:
     description: 'SSH origin'

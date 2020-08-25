@@ -178,42 +178,36 @@ try {
     return result
   }
 
-  let userName = ''
-  let userEmail = ''
-  let home = homedir()
+  let NAME = getInput('NAME')
+  let PORT = getInput('PORT')
+  let USER = getInput('USER')
   let ORIGIN = getInput('ORIGIN')
   let SSHKEY = getInput('SSHKEY')
-  let HOST = getInput('HOST')
-  let USER = getInput('USER')
+
+  let home = homedir()
   let sshFolder = join(home, '.ssh/')
   let sshConfig = join(home, '.ssh', 'config')
   let sshAccess = join(home, '.ssh', 'access')
+
+  let portSSH = (PORT ? `  Port ${PORT}\n` : '')
   let userSSH = (USER ? `  User ${USER}\n` : '')
-  let payload = context ? context.payload || {} : {}
-  let accessText = `Host ${HOST || ORIGIN}\n  HostName ${ORIGIN}\n${userSSH}  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n`
+  let accessText = `Host ${NAME || ORIGIN}\n  HostName ${ORIGIN}\n${userSSH}${portSSH}  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n`
 
   exec(`pwd`)
-  console.log({ home })
-  if (process.platform === 'darwin') exec(`rm -rf ${sshFolder}`)
+  console.log({ home }, '\n')
+  if (process.platform !== 'win32') exec(`rm -rf ${sshFolder} || true`)
 
   mkdirSync(sshFolder)
   writeFileSync(sshConfig, accessText)
   writeFileSync(sshAccess, SSHKEY)
-
-  try {
-    userName = payload.pusher ? (payload.pusher.name || userName) : userName
-    userEmail = payload.pusher ? (payload.pusher.email || userEmail) : userEmail
-  } catch (error) {
-    console.error({ error })
-  }
-
-  if (process.platform !== 'win32') {
-    exec(`chmod 755 ${sshFolder}`)
-    exec(`chmod 600 ${sshAccess}`)
-  }
-
   exec('cat ~/.ssh/config')
 
+  if (process.platform !== 'win32') exec(`chmod 755 ${sshFolder}`)
+  if (process.platform !== 'win32') exec(`chmod 600 ${sshAccess}`)
+
+  let payload = context ? context.payload || {} : {}
+  let userName = payload.pusher ? (payload.pusher.name || '') : ''
+  let userEmail = payload.pusher ? (payload.pusher.email || '') : ''
   if (userName !== '') exec(`git config --global user.name "${userName}"`)
   if (userEmail !== '') exec(`git config --global user.email "${userEmail}"`)
 
@@ -5662,7 +5656,7 @@ const Endpoints = {
   }
 };
 
-const VERSION = "4.1.2";
+const VERSION = "4.1.3";
 
 function endpointsToMethods(octokit, endpointsMap) {
   const newMethods = {};
@@ -5802,7 +5796,7 @@ Object.defineProperty(exports, '__esModule', { value: true });
 var request = __webpack_require__(753);
 var universalUserAgent = __webpack_require__(796);
 
-const VERSION = "4.5.3";
+const VERSION = "4.5.4";
 
 class GraphqlError extends Error {
   constructor(request, response) {

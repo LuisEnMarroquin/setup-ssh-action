@@ -9,24 +9,25 @@ jobs:
   ubuntu:
     runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.2
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.3
       with:
-        ORIGIN: ${{ secrets.HOST }}
+        ORIGIN: ${{ secrets.NAME }}
         SSHKEY: ${{ secrets.SSH_SERVER }}
-        HOST: production
+        NAME: production
+        PORT: ${{ secrets.PORT }}
         USER: ${{ secrets.USER }}
-    - run: ssh production pwd
+    - run: ssh production ls --help
   macos:
     runs-on: macos-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.2
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.3
       with:
         SSHKEY: ${{ secrets.SSH_GITHUB }}
     - run: ssh -T git@github.com || true
   windows:
     runs-on: windows-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.2
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.3
       with:
         SSHKEY: ${{ secrets.SSH_GITHUB }}
     - run: ssh -T git@github.com || true

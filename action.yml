@@ -12,8 +12,11 @@ inputs:
   SSHKEY:
     description: 'SSH key'
     required: true
-  HOST:
+  NAME:
     description: 'SSH host'
+    required: false
+  NAME:
+    description: 'SSH port'
     required: false
   USER:
     description: 'SSH user'

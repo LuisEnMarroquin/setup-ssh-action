@@ -18,9 +18,13 @@ Please use the latest version avaliable or this action
 
 Your repo secrets are at: `https://github.com/<username>/<repository>/settings/secrets`
 
-### `HOST`
+### `NAME`
 
-**Optional** The title of your key on your SSH config
+**Optional** How you can refer to the SSH key on following commands, this defaults to `ORIGIN`
+
+### `PORT`
+
+**Optional** Your port that will be on the SSH config
 
 ### `USER`
 
@@ -40,7 +44,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.2
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.3
       with:
         ORIGIN: 'github.com'
         SSHKEY: ${{ secrets.SSH }}
@@ -59,7 +63,7 @@ Remember to change the version number first for all files
 npm run build # Update your dist/index.js
 git add . # Add all files
 git commit -m "Use zeit/ncc" # Commit the files
-git tag -a -m "Published v1.2" v1.2 # Tag your release
+git tag -a -m "Published v1.3" v1.3 # Tag your release
 git push --follow-tags # Push commit and tags
 ```
 -->

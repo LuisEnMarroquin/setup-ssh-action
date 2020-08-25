@@ -11,7 +11,7 @@ jobs:
     steps:
     - uses: LuisEnMarroquin/setup-ssh-action@v1.5
       with:
-        ORIGIN: ${{ secrets.NAME }}
+        ORIGIN: ${{ secrets.HOST }}
         SSHKEY: ${{ secrets.SSH_SERVER }}
         NAME: production
         PORT: ${{ secrets.PORT }}

@@ -14,7 +14,7 @@ Please use the latest version avaliable or this action
 
 ### `SSHKEY`
 
-**Required** Your GitHub SSH access key, this is readed from GitHub Secrets.
+**Required** Your GitHub SSH access key, you can store it on your repository secrets
 
 Your repo secrets are at: `https://github.com/<username>/<repository>/settings/secrets`
 
@@ -24,11 +24,11 @@ Your repo secrets are at: `https://github.com/<username>/<repository>/settings/s
 
 ### `PORT`
 
-**Optional** Your port that will be on the SSH config
+**Optional** The port that will be on the SSH config
 
 ### `USER`
 
-**Optional** Your user that will be on the SSH config
+**Optional** The user that will be on the SSH config
 
 ## Example usage
 

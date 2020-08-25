@@ -44,7 +44,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.4
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.5
       with:
         ORIGIN: 'github.com'
         SSHKEY: ${{ secrets.SSH }}
@@ -63,7 +63,7 @@ Remember to change the version number first for all files
 npm run build # Update your dist/index.js
 git add . # Add all files
 git commit -m "Use zeit/ncc" # Commit the files
-git tag -a -m "Published v1.4" v1.4 # Tag your release
+git tag -a -m "Published v1.5" v1.5 # Tag your release
 git push --follow-tags # Push commit and tags
 ```
 -->

@@ -195,17 +195,19 @@ try {
 
   exec(`pwd`)
   console.log({ home }, { sshFolder }, '\n')
-  if (process.platform !== 'win32') exec(`rm -rf ${sshFolder} || true`)
-  else {
+  if (process.platform !== 'win32') {
+    exec(`ps -p $$ || true`)
+    exec(`rm -rf ${sshFolder} || true`)
+  } else {
     try {
       exec('(dir 2>&1 *`|echo CMD);&<# rem #>echo PowerShell')
     } catch (error) {
-      console.log(`Can't determine if you are using CMD or PowerShell`, { error })
+      console.log(`Can't determine if you are using CMD or PowerShell`, { error }, '\n')
     }
     try {
       exec(`rmdir ${sshFolder} /s /q`)
     } catch (error) {
-      console.log(`Can't delete ${sshFolder} folder`, { error })
+      console.log(`Can't delete ${sshFolder}, don't worry probably doesn't exists yet`, { error }, '\n')
     }
   }
 

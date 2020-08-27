@@ -194,8 +194,15 @@ try {
   let accessText = `Host ${NAME || ORIGIN}\n  HostName ${ORIGIN}\n${userSSH}${portSSH}  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n`
 
   exec(`pwd`)
-  console.log({ home }, '\n')
+  console.log({ home }, { sshFolder }, '\n')
   if (process.platform !== 'win32') exec(`rm -rf ${sshFolder} || true`)
+  else {
+    try {
+      exec(`Remove-Item ${sshFolder} -Recurse -Confirm:$false -Force -ErrorAction SilentlyContinue`)
+    } catch (error) {
+      console.log(`Can't delete ${sshFolder} folder`, { error })
+    }
+  }
 
   mkdirSync(sshFolder)
   writeFileSync(sshConfig, accessText)

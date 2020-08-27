@@ -17,6 +17,3 @@ npm-shrinkwrap.json
 .ssh/
 config
 access
-
-# Files dev.js
-*.dev.js

@@ -4,7 +4,7 @@
 
 This action sets up your SSH key on `Windows`, `macOS` and `Ubuntu` Virtual Environments
 
-Please use the latest version avaliable or this action
+Please use the latest version avaliable of this action
 
 ## Inputs
 
@@ -20,7 +20,7 @@ Your repo secrets are at: `https://github.com/<username>/<repository>/settings/s
 
 ### `NAME`
 
-**Optional** How you can refer to the SSH key on following commands, this defaults to `ORIGIN`
+**Optional** How you can refer to the SSH key on the following commands, defaults to `ORIGIN` variable
 
 ### `PORT`
 
@@ -44,7 +44,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.5
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.6
       with:
         ORIGIN: 'github.com'
         SSHKEY: ${{ secrets.SSH }}
@@ -61,9 +61,9 @@ Remember to change the version number first for all files
 
 ```shell
 npm run build # Update your dist/index.js
-git add . # Add all files
-git commit -m "Use zeit/ncc" # Commit the files
-git tag -a -m "Published v1.5" v1.5 # Tag your release
+gac Use zeit/ncc # Add and commit with message
+git tag -a -m "Published v1.6" v1.6 # Tag your release
 git push --follow-tags # Push commit and tags
 ```
+
 -->

@@ -9,11 +9,11 @@ jobs:
   ubuntu:
     runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.6
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.7
       with:
         SSHKEY: ${{ secrets.SSH_GITHUB }}
     - run: ssh -T git@github.com || true
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.6
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.7
       with:
         ORIGIN: ${{ secrets.HOST }}
         SSHKEY: ${{ secrets.SSH_SERVER }}
@@ -24,11 +24,11 @@ jobs:
   macos:
     runs-on: macos-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.6
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.7
       with:
         SSHKEY: ${{ secrets.SSH_GITHUB }}
     - run: ssh -T git@github.com || true
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.6
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.7
       with:
         ORIGIN: ${{ secrets.HOST }}
         SSHKEY: ${{ secrets.SSH_SERVER }}
@@ -39,11 +39,11 @@ jobs:
   windows:
     runs-on: windows-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.6
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.7
       with:
         SSHKEY: ${{ secrets.SSH_GITHUB }}
     - run: ssh -T git@github.com || true
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.6
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.7
       with:
         ORIGIN: ${{ secrets.HOST }}
         SSHKEY: ${{ secrets.SSH_SERVER }}

@@ -198,7 +198,12 @@ try {
   if (process.platform !== 'win32') exec(`rm -rf ${sshFolder} || true`)
   else {
     try {
-      exec(`Remove-Item ${sshFolder} -Recurse -Confirm:$false -Force -ErrorAction SilentlyContinue`)
+      exec('(dir 2>&1 *`|echo CMD);&<# rem #>echo PowerShell')
+    } catch (error) {
+      console.log(`Can't determine if you are using CMD or PowerShell`, { error })
+    }
+    try {
+      exec(`rmdir ${sshFolder} /s /q`)
     } catch (error) {
       console.log(`Can't delete ${sshFolder} folder`, { error })
     }

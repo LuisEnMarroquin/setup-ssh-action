@@ -44,7 +44,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.6
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.7
       with:
         ORIGIN: 'github.com'
         SSHKEY: ${{ secrets.SSH }}
@@ -62,7 +62,7 @@ Remember to change the version number first for all files
 ```shell
 npm run build # Update your dist/index.js
 gac Use zeit/ncc # Add and commit with message
-git tag -a -m "Published v1.6" v1.6 # Tag your release
+git tag -a -m "Published v1.7" v1.7 # Tag your release
 git push --follow-tags # Push commit and tags
 ```
 

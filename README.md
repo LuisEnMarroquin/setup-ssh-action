@@ -10,7 +10,7 @@ Please use the latest version avaliable of this action
 
 ### `ORIGIN`
 
-**Optional** Where you want to log in. Default `github.com`
+**Optional** Where you want to log in, can be a **Domain** or an **IP address**. Default `github.com`
 
 ### `SSHKEY`
 
@@ -32,6 +32,8 @@ Your repo secrets are at: `https://github.com/<username>/<repository>/settings/s
 
 ## Example usage
 
+Setup for GitHub
+
 ```yml
 name: Deployment
 
@@ -46,10 +48,34 @@ jobs:
     steps:
     - uses: LuisEnMarroquin/setup-ssh-action@v1.8
       with:
-        ORIGIN: 'github.com'
-        SSHKEY: ${{ secrets.SSH }}
+        SSHKEY: ${{ secrets.SSH }} # -----BEGIN RSA PRIVATE KEY----- ... ... ... ... ... -----END RSA PRIVATE KEY-----
     - run: ssh -T git@github.com || true
 ```
+
+Setup for your server
+
+```yml
+name: Deployment
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.8
+      with:
+        ORIGIN: ${{ secrets.HOST }} # example.com || 8.8.8.8
+        SSHKEY: ${{ secrets.SSH }} # -----BEGIN RSA PRIVATE KEY----- ... ... ... ... ... -----END RSA PRIVATE KEY-----
+        NAME: production
+        PORT: ${{ secrets.PORT }} # 3000
+        USER: ${{ secrets.USER }} # admin
+    - run: ssh production ls --help
+```
+
 
 You can see more examples [here](https://github.com/LuisEnMarroquin/setup-ssh-action/blob/master/.github/workflows/test.yml)
 

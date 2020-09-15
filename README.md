@@ -1,6 +1,8 @@
 # Setup SSH GitHub Action
 
-![GitHub](https://github.com/LuisEnMarroquin/setup-ssh-action/workflows/Testing/badge.svg)
+![GitHub](https://github.com/LuisEnMarroquin/setup-ssh-action/workflows/Windows/badge.svg)
+![GitHub](https://github.com/LuisEnMarroquin/setup-ssh-action/workflows/macOS/badge.svg)
+![GitHub](https://github.com/LuisEnMarroquin/setup-ssh-action/workflows/Ubuntu/badge.svg)
 
 This action sets up your SSH key on `Windows`, `macOS` and `Ubuntu` Virtual Environments
 

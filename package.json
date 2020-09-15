@@ -15,6 +15,10 @@
   "devDependencies": {
     "@zeit/ncc": "^0.22.3"
   },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LuisEnMarroquin/setup-ssh-action.git"
+  },
   "standard": {
     "ignore": [
       "dist/*.js"

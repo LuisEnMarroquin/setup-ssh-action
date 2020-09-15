@@ -1,0 +1,23 @@
+name: macOS
+
+on:
+  push:
+    branches:
+    - master
+
+jobs:
+  test:
+    runs-on: macos-latest
+    steps:
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.8
+      with:
+        SSHKEY: ${{ secrets.SSH_GITHUB }}
+    - run: ssh -T git@github.com || true
+    - uses: LuisEnMarroquin/setup-ssh-action@v1.8
+      with:
+        ORIGIN: ${{ secrets.HOST }}
+        SSHKEY: ${{ secrets.SSH_SERVER }}
+        NAME: production
+        PORT: ${{ secrets.PORT }}
+        USER: ${{ secrets.USER }}
+    - run: ssh production ls --help

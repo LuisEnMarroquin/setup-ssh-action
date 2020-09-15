@@ -50,7 +50,7 @@ jobs:
     steps:
     - uses: LuisEnMarroquin/setup-ssh-action@v1.8
       with:
-        SSHKEY: ${{ secrets.SSH }} # -----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY-----
+        SSHKEY: ${{ secrets.SSH }} # ----- BEGIN RSA PRIVATE KEY----- ... -----
     - run: ssh -T git@github.com || true
 ```
 
@@ -71,7 +71,7 @@ jobs:
     - uses: LuisEnMarroquin/setup-ssh-action@v1.8
       with:
         ORIGIN: ${{ secrets.HOST }} # example.com || 8.8.8.8
-        SSHKEY: ${{ secrets.SSH }} # -----BEGIN RSA PRIVATE KEY----- ... -----END RSA PRIVATE KEY-----
+        SSHKEY: ${{ secrets.SSH }} # ----- BEGIN RSA PRIVATE KEY----- ... -----
         NAME: production
         PORT: ${{ secrets.PORT }} # 3000
         USER: ${{ secrets.USER }} # admin
@@ -79,7 +79,7 @@ jobs:
 ```
 
 
-You can see more examples [here](https://github.com/LuisEnMarroquin/setup-ssh-action/blob/master/.github/workflows/test.yml)
+You can see more examples [here](https://github.com/LuisEnMarroquin/setup-ssh-action/blob/master/.github/workflows)
 
 <!--
 

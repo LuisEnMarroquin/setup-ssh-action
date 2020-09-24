@@ -40,7 +40,7 @@ name: Deployment
 on:
   push:
     branches:
-    - master
+    - main
 
 jobs:
   deploy:
@@ -60,7 +60,7 @@ name: Deployment
 on:
   push:
     branches:
-    - master
+    - main
 
 jobs:
   deploy:
@@ -77,7 +77,7 @@ jobs:
 ```
 
 
-You can see more examples [here](https://github.com/LuisEnMarroquin/setup-ssh-action/blob/master/.github/workflows)
+You can see more examples [here](https://github.com/LuisEnMarroquin/setup-ssh-action/blob/main/.github/workflows)
 
 <!--
 

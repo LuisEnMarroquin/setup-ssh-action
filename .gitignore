@@ -9,11 +9,9 @@ desktop.ini
 # Test files
 /nothing.*
 
-# Other package managers
+# Package managers
 yarn.lock
 npm-shrinkwrap.json
 
-# SSH files
-.ssh/
-config
-access
+# VS Code errors
+*.log*

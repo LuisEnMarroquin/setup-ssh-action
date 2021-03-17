@@ -1,16 +1,15 @@
-const { getInput, setFailed } = require('@actions/core')
-const { mkdirSync, writeFileSync } = require('fs')
-const { context } = require('@actions/github')
-const { execSync } = require('child_process')
-const { homedir } = require('os')
-const { join } = require('path')
+import { getInput, setFailed } from '@actions/core'
+import { mkdirSync, writeFileSync } from 'fs'
+import { context } from '@actions/github'
+import { execSync } from 'child_process'
+import { homedir } from 'os'
+import { join } from 'path'
 
 try {
-  let exec = (command) => {
+  let exec = (command: string) => {
     console.log('exec', command.length, command)
     let result = execSync(command, { encoding: 'utf-8' })
     console.log(result)
-    return result
   }
 
   let NAME = getInput('NAME')
@@ -28,7 +27,6 @@ try {
   let userSSH = (USER ? `  User ${USER}\n` : '')
   let accessText = `Host ${NAME || ORIGIN}\n  HostName ${ORIGIN}\n${userSSH}${portSSH}  IdentityFile ${sshAccess}\n  StrictHostKeyChecking no\n`
 
-  exec(`pwd`)
   console.log({ home }, { sshFolder }, '\n')
   if (process.platform !== 'win32') {
     exec(`ps -p $$ || true`)
@@ -55,8 +53,9 @@ try {
   if (process.platform !== 'win32') exec(`chmod 600 ${sshAccess}`)
 
   let payload = context ? context.payload || {} : {}
-  let userName = payload.pusher ? (payload.pusher.name || '') : ''
-  let userEmail = payload.pusher ? (payload.pusher.email || '') : ''
+  let userName = 'LuisEnMarroquin', userEmail = 'mluis651@gmail.com'
+  userName = payload.pusher ? (payload.pusher.name || userName) : userName
+  userEmail = payload.pusher ? (payload.pusher.email || userEmail) : userEmail
   if (userName !== '') exec(`git config --global user.name "${userName}"`)
   if (userEmail !== '') exec(`git config --global user.email "${userEmail}"`)
 

@@ -8,6 +8,7 @@
     "dist/index.js": true
   },
   "files.exclude": {
+    "LICENSE": true,
     "**/.DS_Store": true,
     "**/.directory": true,
     "**/desktop.ini": true,

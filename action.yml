@@ -1,9 +1,9 @@
 name: 'Setup SSH Action'
-description: 'This action setups your SSH key at any host'
+description: 'Sets up your SSH credentials inside the GitHub virtual environment'
 author: 'LuisEnMarroquin'
 branding:
-  color: 'green'
-  icon: 'award'
+  color: 'blue'
+  icon: 'key'
 inputs:
   ORIGIN:
     description: 'SSH origin'

@@ -9,9 +9,11 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
+    - run: git config --list
     - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
       with:
         SSHKEY: ${{ secrets.SSH_GITHUB }}
+    - run: git config --list
     - run: ssh -T git@github.com || true
     - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
       with:

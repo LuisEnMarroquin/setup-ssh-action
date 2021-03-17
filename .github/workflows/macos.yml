@@ -9,11 +9,11 @@ jobs:
   test:
     runs-on: macos-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.9.0
+    - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
       with:
         SSHKEY: ${{ secrets.SSH_GITHUB }}
     - run: ssh -T git@github.com || true
-    - uses: LuisEnMarroquin/setup-ssh-action@v1.9.0
+    - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
       with:
         ORIGIN: ${{ secrets.HOST }}
         SSHKEY: ${{ secrets.SSH_SERVER }}

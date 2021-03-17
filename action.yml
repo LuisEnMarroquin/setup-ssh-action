@@ -3,7 +3,7 @@ description: 'Sets up your SSH credentials inside the GitHub virtual environment
 author: 'LuisEnMarroquin'
 branding:
   color: 'blue'
-  icon: 'key'
+  icon: 'cloud'
 inputs:
   ORIGIN:
     description: 'SSH origin'

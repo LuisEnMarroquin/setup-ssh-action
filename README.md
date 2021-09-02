@@ -54,12 +54,12 @@ jobs:
 
 ## Inputs
 
-| Key      | Value Information                                                                         | Required |
-|----------|-------------------------------------------------------------------------------------------|----------|
-| `ORIGIN` | Where you want to log in, can be a **Domain** or **IP address**, defaults to `github.com` | **No**   |
-| `SSHKEY` | Your SSH access key, it's better to store it on your repository secrets                   | **Yes**  |
-| `NAME`   | How you can refer to the SSH key on the following commands, defaults to `ORIGIN`          | **No**   |
-| `PORT`   | The port that will be on the SSH config                                                   | **No**   |
-| `USER`   | The user that will be on the SSH config                                                   | **No**   |
+| Key      | Value Information                                                                | Required |
+|----------|----------------------------------------------------------------------------------|----------|
+| `ORIGIN` | Where to log in, can be a **Domain** or **IP address**, defaults to `github.com` | **No**   |
+| `SSHKEY` | Your SSH access key, it's better to store it on your repository secrets          | **Yes**  |
+| `NAME`   | How you can refer to the SSH key in the next commands, defaults to `ORIGIN`      | **No**   |
+| `PORT`   | The port that will be on the SSH config                                          | **No**   |
+| `USER`   | The user that will be on the SSH config                                          | **No**   |
 
 Your repo secrets are at: `https://github.com/<username>/<repository>/settings/secrets`

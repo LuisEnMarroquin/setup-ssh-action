@@ -9,9 +9,5 @@ desktop.ini
 # Test files
 /nothing.*
 
-# Package managers
-yarn.lock
-npm-shrinkwrap.json
-
 # VS Code errors
 *.log*

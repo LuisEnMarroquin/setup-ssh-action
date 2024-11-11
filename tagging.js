@@ -1,8 +1,7 @@
 const { execSync } = require("child_process");
 const { readFileSync } = require("fs");
 
-const exec = (command) =>
-  console.log(execSync(command, { encoding: "utf-8", timeout: 1000 * 60 }));
+const exec = (command) => console.log(execSync(command, { encoding: "utf-8", timeout: 1000 * 60 }));
 const arguments = [...process.argv].slice(2);
 
 if (arguments.length === 0) {

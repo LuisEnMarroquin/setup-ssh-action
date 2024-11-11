@@ -61,6 +61,6 @@ try {
   if (userEmail !== "") exec(`git config --global user.email "${userEmail}"`);
 
   console.log({ payload });
-} catch (error) {
+} catch (error: any) {
   setFailed(error.message);
 }

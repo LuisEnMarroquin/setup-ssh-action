@@ -16,16 +16,16 @@ name: Deployment
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
-      with:
-        SSHKEY: ${{ secrets.SSH }} # ----- BEGIN RSA PRIVATE KEY----- ...
-    - run: ssh -T git@github.com || true
+      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.1
+        with:
+          SSHKEY: ${{ secrets.SSH }} # ----- BEGIN RSA PRIVATE KEY----- ...
+      - run: ssh -T git@github.com || true
 ```
 
 Setup for your server
@@ -36,26 +36,26 @@ name: Deployment
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
-      with:
-        ORIGIN: ${{ secrets.HOST }} # example.com || 8.8.8.8
-        SSHKEY: ${{ secrets.SSH }} # ----- BEGIN RSA PRIVATE KEY----- ...
-        NAME: production
-        PORT: ${{ secrets.PORT }} # 3000
-        USER: ${{ secrets.USER }} # admin
-    - run: ssh production ls --help
+      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.1
+        with:
+          ORIGIN: ${{ secrets.HOST }} # example.com || 8.8.8.8
+          SSHKEY: ${{ secrets.SSH }} # ----- BEGIN RSA PRIVATE KEY----- ...
+          NAME: production
+          PORT: ${{ secrets.PORT }} # 3000
+          USER: ${{ secrets.USER }} # admin
+      - run: ssh production ls --help
 ```
 
 ## Inputs
 
 | Key      | Value Information                                                                | Required |
-|----------|----------------------------------------------------------------------------------|----------|
+| -------- | -------------------------------------------------------------------------------- | -------- |
 | `ORIGIN` | Where to log in, can be a **Domain** or **IP address**, defaults to `github.com` | **No**   |
 | `SSHKEY` | Your SSH access key, it's better to store it on your repository secrets          | **Yes**  |
 | `NAME`   | How you can refer to the SSH key in the next commands, defaults to `ORIGIN`      | **No**   |

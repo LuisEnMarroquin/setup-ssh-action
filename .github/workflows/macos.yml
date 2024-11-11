@@ -3,21 +3,21 @@ name: macOS
 on:
   push:
     branches:
-    - main
+      - main
 
 jobs:
   test:
     runs-on: macos-latest
     steps:
-    - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
-      with:
-        SSHKEY: ${{ secrets.SSH_GITHUB }}
-    - run: ssh -T git@github.com || true
-    - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
-      with:
-        ORIGIN: ${{ secrets.HOST }}
-        SSHKEY: ${{ secrets.SSH_SERVER }}
-        NAME: production
-        PORT: ${{ secrets.PORT }}
-        USER: ${{ secrets.USER }}
-    - run: ssh production ls --help
+      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.1
+        with:
+          SSHKEY: ${{ secrets.SSH_GITHUB }}
+      - run: ssh -T git@github.com || true
+      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.1
+        with:
+          ORIGIN: ${{ secrets.HOST }}
+          SSHKEY: ${{ secrets.SSH_SERVER }}
+          NAME: production
+          PORT: ${{ secrets.PORT }}
+          USER: ${{ secrets.USER }}
+      - run: ssh production ls --help

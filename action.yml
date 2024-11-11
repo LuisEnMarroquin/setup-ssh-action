@@ -1,26 +1,26 @@
-name: 'Setup SSH Action'
-description: 'Sets up your SSH credentials inside the GitHub virtual environment'
-author: 'LuisEnMarroquin'
+name: "Setup SSH Action"
+description: "Sets up your SSH credentials inside the GitHub virtual environment"
+author: "LuisEnMarroquin"
 branding:
-  color: 'blue'
-  icon: 'cloud'
+  color: "blue"
+  icon: "cloud"
 inputs:
   ORIGIN:
-    description: 'SSH origin'
-    default: 'github.com'
+    description: "SSH origin"
+    default: "github.com"
     required: false
   SSHKEY:
-    description: 'SSH key'
+    description: "SSH key"
     required: true
   NAME:
-    description: 'SSH host'
+    description: "SSH host"
     required: false
   PORT:
-    description: 'SSH port'
+    description: "SSH port"
     required: false
   USER:
-    description: 'SSH user'
+    description: "SSH user"
     required: false
 runs:
-  using: 'node12'
-  main: 'dist/index.js'
+  using: "node12"
+  main: "dist/index.js"

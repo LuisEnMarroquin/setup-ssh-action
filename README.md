@@ -22,7 +22,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
+      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.1
         with:
           SSHKEY: ${{ secrets.SSH }} # ----- BEGIN RSA PRIVATE KEY----- ...
       - run: ssh -T git@github.com || true
@@ -42,7 +42,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.0
+      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.1
         with:
           ORIGIN: ${{ secrets.HOST }} # example.com || 8.8.8.8
           SSHKEY: ${{ secrets.SSH }} # ----- BEGIN RSA PRIVATE KEY----- ...

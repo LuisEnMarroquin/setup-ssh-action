@@ -4,11 +4,19 @@
   "files.insertFinalNewline": true,
   "editor.detectIndentation": false,
   "files.trimTrailingWhitespace": true,
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "explicit",
+    "source.sortMembers": "explicit",
+    "source.organizeImports": "explicit"
+  },
   "search.exclude": {
-    "dist/index.js": true
+    "**/yarn.lock": true,
+    "**/package-lock.json": true
   },
   "files.exclude": {
-    "LICENSE": true,
+    "**/dist/": true,
+    "**/coverage/": true,
     "**/.DS_Store": true,
     "**/.directory": true,
     "**/desktop.ini": true,

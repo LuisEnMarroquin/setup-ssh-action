@@ -63,3 +63,35 @@ jobs:
 | `USER`   | The user that will be on the SSH config                                          | **No**   |
 
 Your repo secrets are at: `https://github.com/<username>/<repository>/settings/secrets`
+
+## How to release new version
+
+1. Create deployable file
+
+```shell
+npm run build
+```
+
+2. Create a tag and push it
+
+```shell
+git tag -a v2.0.3 -m "Updating all dependencies to latest"
+git push origin v2.0.3
+```
+
+3. Go to releases page and click `Draft a new release`
+
+https://github.com/LuisEnMarroquin/setup-ssh-action/releases
+
+4. Fill with correct data
+
+- Title: `Released v2.0.3`
+- Description: `Paste contents from README.md`
+
+5. Git add, commit and push your changes
+
+```shell
+gacp Updating all dependencies to latest
+```
+
+6. Validate that pipelines worked

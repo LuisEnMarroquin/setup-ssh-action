@@ -85,6 +85,8 @@ https://github.com/LuisEnMarroquin/setup-ssh-action/releases
 
 4. Fill with correct data
 
+- Pick current tag
+- Pick older tag
 - Title: `Released v2.0.4`
 - Description: `Paste contents from README.md`
 

@@ -15,8 +15,6 @@
     "**/package-lock.json": true
   },
   "files.exclude": {
-    "**/dist/": true,
-    "**/coverage/": true,
     "**/.DS_Store": true,
     "**/.directory": true,
     "**/desktop.ini": true,

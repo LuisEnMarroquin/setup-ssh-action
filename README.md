@@ -22,7 +22,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.4
+      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.5
         with:
           SSHKEY: ${{ secrets.SSH }} # ----- BEGIN RSA PRIVATE KEY----- ...
       - run: ssh -T git@github.com || true
@@ -42,7 +42,7 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.4
+      - uses: LuisEnMarroquin/setup-ssh-action@v2.0.5
         with:
           ORIGIN: ${{ secrets.HOST }} # example.com || 8.8.8.8
           SSHKEY: ${{ secrets.SSH }} # ----- BEGIN RSA PRIVATE KEY----- ...
@@ -75,8 +75,8 @@ npm run build
 2. Create a tag and push it
 
 ```shell
-git tag -a v2.0.4 -m "Changed all files version to the proper one"
-git push origin v2.0.4
+git tag -a v2.0.5 -m "Changed all files version to the proper one"
+git push origin v2.0.5
 ```
 
 3. Go to releases page and click `Draft a new release`
@@ -87,7 +87,7 @@ https://github.com/LuisEnMarroquin/setup-ssh-action/releases
 
 - Pick current tag
 - Pick older tag
-- Title: `Released v2.0.4`
+- Title: `Released v2.0.5`
 - Description: `Paste contents from README.md`
 
 5. Git add, commit and push your changes

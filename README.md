@@ -97,3 +97,35 @@ gacp "Major refactor with improved security, error handling, and comprehensive t
 ```
 
 6. Validate that pipelines worked
+
+## Branch Protection and Testing
+
+This repository includes comprehensive testing that runs automatically:
+
+### 🧪 **Testing Workflows**
+
+- **Pull Request Testing**: All PRs to `main` automatically run unit tests, type checking, and build verification
+- **Cross-Platform Testing**: Tests run on Ubuntu, Windows, and macOS
+- **Code Coverage**: Coverage reports are generated and can be uploaded to Codecov
+- **Build Verification**: Ensures `dist/` directory is up to date
+
+### 🛡️ **Recommended Branch Protection Rules**
+
+For optimal security and code quality, configure these branch protection rules for the `main` branch:
+
+1. Go to: `Settings` → `Branches` → `Add rule`
+2. Branch name pattern: `main`
+3. Enable:
+   - ✅ **Require a pull request before merging**
+   - ✅ **Require status checks to pass before merging**
+     - Required status checks:
+       - `test / test`
+       - `test / build`
+       - `Ubuntu / unit-tests`
+       - `Windows / unit-tests`
+       - `macOS / unit-tests`
+   - ✅ **Require branches to be up to date before merging**
+   - ✅ **Require linear history**
+   - ✅ **Include administrators**
+
+This ensures all code is properly tested before merging to main.

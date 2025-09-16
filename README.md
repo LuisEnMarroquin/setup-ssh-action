@@ -87,31 +87,47 @@ jobs:
 npm run build
 ```
 
-2. Create a tag and push it
+2. Git add, commit and push your changes
+
+```shell
+gacp "Major refactor with improved security, error handling, and comprehensive tests"
+```
+
+3. **CRITICAL**: Create and push the tag AFTER committing
 
 ```shell
 git tag -a v3.0.0 -m "Major refactor with improved security, error handling, and comprehensive tests"
 git push origin v3.0.0
 ```
 
-3. Go to releases page and click `Draft a new release`
+4. **IMPORTANT**: Verify the tag was pushed to GitHub
+
+```shell
+git ls-remote --tags origin
+```
+
+Make sure your new tag appears in the list. If the tag is missing, GitHub Actions cannot find the version and deployments will fail with:
+```
+Error: Unable to resolve action `luisenmarroquin/setup-ssh-action@vX.X.X`, unable to find version `vX.X.X`
+```
+
+If the tag is missing, push it manually:
+```shell
+git push origin vX.X.X
+```
+
+5. Go to releases page and click `Draft a new release`
 
 https://github.com/LuisEnMarroquin/setup-ssh-action/releases
 
-4. Fill with correct data
+6. Fill with correct data
 
 - Pick current tag
 - Pick older tag
 - Title: `Released v3.0.0`
 - Description: `Paste contents from README.md`
 
-5. Git add, commit and push your changes
-
-```shell
-gacp "Major refactor with improved security, error handling, and comprehensive tests"
-```
-
-6. Validate that pipelines worked
+7. Validate that pipelines worked
 
 ## Branch Protection and Testing
 

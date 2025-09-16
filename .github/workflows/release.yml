@@ -1,0 +1,74 @@
+name: 🚀 Release
+
+on:
+  push:
+    tags:
+      - 'v*'
+
+permissions:
+  contents: write
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 📥 Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: 📝 Extract version from tag
+        id: version
+        run: echo "VERSION=${GITHUB_REF#refs/tags/}" >> $GITHUB_OUTPUT
+
+      - name: 📋 Extract release notes from CHANGELOG
+        id: changelog
+        run: |
+          # Extract the section for this version from CHANGELOG.md
+          VERSION="${{ steps.version.outputs.VERSION }}"
+
+          # Find the start and end of the version section
+          START_LINE=$(grep -n "## \[$VERSION\]" CHANGELOG.md | cut -d: -f1)
+
+          if [ -z "$START_LINE" ]; then
+            echo "No changelog entry found for $VERSION"
+            echo "RELEASE_NOTES=No changelog entry found for this version." >> $GITHUB_OUTPUT
+            exit 0
+          fi
+
+          # Find the next version section or end of file
+          NEXT_LINE=$(tail -n +$((START_LINE + 1)) CHANGELOG.md | grep -n "^## \[" | head -1 | cut -d: -f1)
+
+          if [ -z "$NEXT_LINE" ]; then
+            # No next version found, extract to end of file
+            tail -n +$START_LINE CHANGELOG.md > release_notes.md
+          else
+            # Extract only this version's section
+            END_LINE=$((START_LINE + NEXT_LINE - 1))
+            sed -n "${START_LINE},${END_LINE}p" CHANGELOG.md > release_notes.md
+          fi
+
+          # Remove the version header line and clean up
+          tail -n +2 release_notes.md | sed '/^---$/,$d' | sed '/^$/N;/^\n$/d' > cleaned_notes.md
+
+          # Set multiline output
+          echo "RELEASE_NOTES<<EOF" >> $GITHUB_OUTPUT
+          cat cleaned_notes.md >> $GITHUB_OUTPUT
+          echo "EOF" >> $GITHUB_OUTPUT
+
+      - name: 🏷️ Create GitHub Release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ steps.version.outputs.VERSION }}
+          release_name: "🚀 ${{ steps.version.outputs.VERSION }}"
+          body: ${{ steps.changelog.outputs.RELEASE_NOTES }}
+          draft: false
+          prerelease: ${{ contains(steps.version.outputs.VERSION, 'beta') || contains(steps.version.outputs.VERSION, 'alpha') || contains(steps.version.outputs.VERSION, 'rc') }}
+
+      - name: ✅ Release completed
+        run: |
+          echo "✅ Release ${{ steps.version.outputs.VERSION }} has been created successfully!"
+          echo "🔗 View at: https://github.com/${{ github.repository }}/releases/tag/${{ steps.version.outputs.VERSION }}"

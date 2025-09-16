@@ -1,20 +1,28 @@
 {
   "name": "setup-ssh-action",
-  "version": "2.0.5",
+  "version": "3.0.0",
   "description": "Sets up your SSH credentials inside the GitHub virtual environment",
   "license": "GPL-3.0",
   "author": "LuisEnMarroquin <luis@marroquin.dev>",
   "scripts": {
-    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider ncc build index.ts -o dist --minify"
+    "build": "cross-env NODE_OPTIONS=--openssl-legacy-provider ncc build index.ts -o dist --minify",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "lint": "echo 'No linter configured yet'",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@actions/core": "^1.11.1",
     "@actions/github": "^6.0.0"
   },
   "devDependencies": {
+    "@types/jest": "^29.5.14",
     "@types/node": "^22.9.0",
     "@vercel/ncc": "^0.38.2",
     "cross-env": "^7.0.3",
+    "jest": "^29.7.0",
+    "ts-jest": "^29.2.5",
     "typescript": "^5.6.3"
   },
   "repository": {
